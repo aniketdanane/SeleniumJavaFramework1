@@ -1,0 +1,38 @@
+package test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class TestNG_Demo {
+	static WebDriver driver = null;
+
+	@BeforeTest
+	public void setup() {
+		WebDriverManager.chromedriver().setup();
+		driver = new ChromeDriver();
+		
+	}
+	@Test
+	public static void googlesearch() {
+		
+		driver.get("https://google.com");
+		driver.findElement(By.name("q")).sendKeys("Automation");
+		driver.findElement(By.name("btnK")).click();
+	
+	}
+	
+	@AfterTest
+	
+	public void teardownTest() {
+		driver.close();
+		driver.quit();
+		System.out.println("Test completed successfully");
+	}
+
+}
